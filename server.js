@@ -8,13 +8,24 @@ import * as Issue from './schema/issue';
 import * as Vote from './schema/vote';
 import * as User from './schema/user';
 import * as Resource from './schema/resource';
+import * as Geometry from './schema/geometry';
+import * as Location from './schema/location';
+
 import * as emissionsReduction from './schema/emissionsReduction';
 import { issueUrl, voteUrl, userUrl, resourceUrl, emissionsReductionUrl } from './apiroutes';
 import { filter } from 'lodash';
+import googleMaps from '@google/maps';
+const googleMapsClient = googleMaps.createClient({
+    key: 'AIzaSyCzKZZwaTQgfPXm5ZQa7V6ht0dHXz3wKi8',
+    Promise: Promise
+});
+
+
+
 const types = [];
 const queries = [];
 const mutations = [];
-const schemas = [Issue, Vote, User, Resource, emissionsReduction];
+const schemas = [Issue, Vote, User, Resource, emissionsReduction, Geometry, Location];
 
 schemas.forEach(function(s) {
     types.push(s.types);
@@ -40,7 +51,20 @@ const resolvers = {
         getAllVotes: () => axios.get(voteUrl).then(res => res.data).catch(err => console.error(err)),
         getAllUsers: () => axios.get(userUrl).then(res => res.data).catch(err => console.error(err)),
         getAllResource: () => axios.get(resourceUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllemissionsReduction: () => axios.get(emissionsReductionUrl).then(res => res.data).catch(err => console.error(err))
+        getAllemissionsReduction: () => axios.get(emissionsReductionUrl).then(res => res.data).catch(err => console.error(err)),
+        getResourcesFromGoogle: (_, args) => googleMapsClient.placesNearby({
+                language: 'en',
+                location: [args.lat, args.lng],
+                radius: 5000,
+                opennow: true,
+                type: 'gas_station'
+            }).asPromise()
+            .then((response) => {
+                return response.json.results;
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     },
     Issue: {
         vote: (issue) => axios.get(voteUrl).then(({ data }) => filter(data, { issueId: issue.id })).catch(err => console.error(err))

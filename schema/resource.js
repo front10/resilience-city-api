@@ -1,19 +1,21 @@
 export const types = `
 "Resource entitie"
     type Resource {        
-        id: Int!
+        id: String!
         name: String!     
-        category: String  
-        latitude: Float
-        longitude: Float
+        icon: String 
+        geometry: Geometry
+        vecinity: String
+        rating: Float
     }
 `;
 
 export const queries = `
-    resource(id: Int!): Resource
+    resource(id: String!): Resource
     getAllResource: [Resource]
+    getResourcesFromGoogle(lat: Float, lng:Float): [Resource]
     
 `;
 export const mutations = `
-    addResource(id:Int, name:String, category:String, latitude:Float, longitude:Float): Resource!
+    addResource(id:String, name:String, icon:String): Resource!
 `;
