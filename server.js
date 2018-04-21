@@ -9,7 +9,7 @@ import * as Vote from './schema/vote';
 import * as User from './schema/user';
 
 import { issueUrl, voteUrl, userUrl } from './apiroutes';
-import { filter, uniqBy } from 'lodash';
+import { filter } from 'lodash';
 const types = [];
 const queries = [];
 const mutations = [];
