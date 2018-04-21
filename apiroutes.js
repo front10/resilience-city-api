@@ -4,3 +4,4 @@ export const voteUrl = `${baseUrl}vote`;
 export const userUrl = `${baseUrl}user`;
 export const resourceUrl = `${baseUrl}resource`;
 export const emissionsReductionUrl = `${baseUrl}emissionsReduction`;
+export const disasterKitUrl = `${baseUrl}disasterKit`;

@@ -7,13 +7,16 @@ export const types = `
         geometry: Geometry
         vecinity: String
         rating: Float
+        value: Int
+        color: String
+        types: String
     }
 `;
 
 export const queries = `
     resource(id: String!): Resource
     getAllResource: [Resource]
-    getResourcesFromGoogle(lat: Float, lng:Float): [Resource]
+    getResourcesFromGoogle(lat: Float, lng:Float, ltype: [String], language: String): [Resource]
     
 `;
 export const mutations = `

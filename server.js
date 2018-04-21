@@ -10,22 +10,35 @@ import * as User from './schema/user';
 import * as Resource from './schema/resource';
 import * as Geometry from './schema/geometry';
 import * as Location from './schema/location';
+import * as disasterKit from './schema/disasterKit';
 
 import * as emissionsReduction from './schema/emissionsReduction';
-import { issueUrl, voteUrl, userUrl, resourceUrl, emissionsReductionUrl } from './apiroutes';
+import { issueUrl, voteUrl, userUrl, resourceUrl, emissionsReductionUrl, disasterKitUrl } from './apiroutes';
 import { filter } from 'lodash';
 import googleMaps from '@google/maps';
+// import translate from "google-translate-api";
+
 const googleMapsClient = googleMaps.createClient({
     key: 'AIzaSyCzKZZwaTQgfPXm5ZQa7V6ht0dHXz3wKi8',
     Promise: Promise
 });
-
-
+// translate('I spea Dutch!', { from: 'en', to: 'nl' }).then(res => {
+//     console.log(res.text);
+//     //=> Ik spreek Nederlands! 
+//     console.log(res.from.text.autoCorrected);
+//     //=> true 
+//     console.log(res.from.text.value);
+//     //=> I [speak] Dutch! 
+//     console.log(res.from.text.didYouMean);
+//     //=> false 
+// }).catch(err => {
+//     console.error(err);
+// });
 
 const types = [];
 const queries = [];
 const mutations = [];
-const schemas = [Issue, Vote, User, Resource, emissionsReduction, Geometry, Location];
+const schemas = [Issue, Vote, User, Resource, emissionsReduction, Geometry, Location, disasterKit];
 
 schemas.forEach(function(s) {
     types.push(s.types);
@@ -50,21 +63,44 @@ const resolvers = {
         getAllIssues: () => axios.get(issueUrl).then(res => res.data).catch(err => console.error(err)),
         getAllVotes: () => axios.get(voteUrl).then(res => res.data).catch(err => console.error(err)),
         getAllUsers: () => axios.get(userUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllDisasterKit: () => axios.get(disasterKitUrl).then(res => res.data).catch(err => console.error(err)),
         getAllResource: () => axios.get(resourceUrl).then(res => res.data).catch(err => console.error(err)),
         getAllemissionsReduction: () => axios.get(emissionsReductionUrl).then(res => res.data).catch(err => console.error(err)),
-        getResourcesFromGoogle: (_, args) => googleMapsClient.placesNearby({
-                language: 'en',
-                location: [args.lat, args.lng],
-                radius: 5000,
-                opennow: true,
-                type: 'gas_station'
-            }).asPromise()
-            .then((response) => {
-                return response.json.results;
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+        getResourcesFromGoogle: (_, args) => {
+            let result = [];
+            let locationp = [args.lat, args.lng];
+            let languagep = args.lang;
+            args.ltype.map((item) => {
+                let typeb = item;
+                result = result.concat(googleMapsClient.placesNearby({
+                        language: languagep,
+                        location: locationp,
+                        radius: 5000,
+                        opennow: true,
+                        type: item
+                    }).asPromise()
+                    .then((response) => {
+                        let values = response.json.results;
+                        values.map(item => {
+                            item.value = Math.floor(Math.random() * 100);
+                            item.color = item.value < 40 ? "#C90500" : item.value < 65 ? "#C96500" : "#10A400";
+                            item.types = typeb;
+                        });
+                        return values;
+                    })
+                    .catch((err) => {
+                        console.log(err);
+                    }));
+            });
+
+            return Promise.all(result).then(function(values) {
+                let res = [];
+                values.map(item => {
+                    res = res.concat(item);
+                });
+                return res;
+            });
+        }
     },
     Issue: {
         vote: (issue) => axios.get(voteUrl).then(({ data }) => filter(data, { issueId: issue.id })).catch(err => console.error(err))
