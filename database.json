@@ -1212,5 +1212,12 @@
         { "id": 998, "name": "Mills Inc", "category": "Watter", "latitude": -21.9953615, "longitude": -42.9146039 },
         { "id": 999, "name": "Koelpin and Sons", "category": "Watter", "latitude": -28.733291, "longitude": 29.35628 },
         { "id": 1000, "name": "Fisher, Shanahan and Osinski", "category": "Oil", "latitude": -7.7076152, "longitude": 114.0369075 }
+    ],
+    "emissionsReduction": [{ "id": 1, "name": "Brakus Inc", "value": 1 },
+        { "id": 2, "name": "Jones LLC", "value": 2 },
+        { "id": 3, "name": "Frami-Cartwright", "value": 13 },
+        { "id": 4, "name": "Raynor-Kihn", "value": 1 },
+        { "id": 5, "name": "Leuschke-Durgan", "value": 79 },
+        { "id": 6, "name": "O'Conner LLC", "value": 6 }
     ]
 }

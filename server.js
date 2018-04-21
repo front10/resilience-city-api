@@ -8,12 +8,13 @@ import * as Issue from './schema/issue';
 import * as Vote from './schema/vote';
 import * as User from './schema/user';
 import * as Resource from './schema/resource';
-import { issueUrl, voteUrl, userUrl, resourceUrl } from './apiroutes';
+import * as emissionsReduction from './schema/emissionsReduction';
+import { issueUrl, voteUrl, userUrl, resourceUrl, emissionsReductionUrl } from './apiroutes';
 import { filter } from 'lodash';
 const types = [];
 const queries = [];
 const mutations = [];
-const schemas = [Issue, Vote, User, Resource];
+const schemas = [Issue, Vote, User, Resource, emissionsReduction];
 
 schemas.forEach(function(s) {
     types.push(s.types);
@@ -34,10 +35,12 @@ const resolvers = {
         vote: (_, args) => axios.get(`${voteUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         user: (_, args) => axios.get(`${userUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         resource: (_, args) => axios.get(`${resourceUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+        emissionsReduction: (_, args) => axios.get(`${emissionsReductionUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         getAllIssues: () => axios.get(issueUrl).then(res => res.data).catch(err => console.error(err)),
         getAllVotes: () => axios.get(voteUrl).then(res => res.data).catch(err => console.error(err)),
         getAllUsers: () => axios.get(userUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllResource: () => axios.get(resourceUrl).then(res => res.data).catch(err => console.error(err))
+        getAllResource: () => axios.get(resourceUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllemissionsReduction: () => axios.get(emissionsReductionUrl).then(res => res.data).catch(err => console.error(err))
     },
     Issue: {
         vote: (issue) => axios.get(voteUrl).then(({ data }) => filter(data, { issueId: issue.id })).catch(err => console.error(err))
