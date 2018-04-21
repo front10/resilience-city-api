@@ -85,6 +85,38 @@ const resolvers = {
                             item.value = Math.floor(Math.random() * 100);
                             item.color = item.value < 40 ? "#C90500" : item.value < 65 ? "#C96500" : "#10A400";
                             item.types = typeb;
+                            switch (item.types) {
+                                case "market":
+                                    {
+                                        item.faIcon = "fa-shopping-cart";
+                                        break;
+                                    }
+                                case "airport":
+                                    {
+                                        item.faIcon = "fa-plane";
+                                        break;
+                                    }
+                                case "hospital":
+                                    {
+                                        item.faIcon = "fa-hospital-symbol";
+                                        break;
+                                    }
+                                case "store":
+                                    {
+                                        item.faIcon = "fa-shopping-cart";
+                                        break;
+                                    }
+                                case "gas_station":
+                                    {
+                                        item.faIcon = "fa-car";
+                                        break;
+                                    }
+                                default:
+                                    {
+                                        item.faIcon = "fa-map-marker";
+                                        break;
+                                    }
+                            }
                         });
                         return values;
                     })

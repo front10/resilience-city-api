@@ -10,6 +10,7 @@ export const types = `
         value: Int
         color: String
         types: String
+        faIcon: String
     }
 `;
 
