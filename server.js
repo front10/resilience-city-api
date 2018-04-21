@@ -4,20 +4,16 @@ import bodyParser from 'body-parser';
 import { graphqlExpress, graphiqlExpress } from 'graphql-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
 import axios from 'axios';
-import * as Doctor from './schema/doctor';
-import * as Address from './schema/address';
-import * as Horary from './schema/horary';
-import * as Language from './schema/language';
-import * as Procedure from './schema/procedure';
-import * as Carrier from './schema/carrier';
-import * as doctorCarrier from './schema/doctorCarrier';
-import * as medicalPlane from './schema/medicalPlane';
-import { addressUrl, doctorUrl, horaryUrl, languageUrl, procedureUrl, carrierUrl, medicalPlaneUrl, doctorCarrierUrl } from './apiroutes';
+import * as Issue from './schema/issue';
+import * as Vote from './schema/vote';
+import * as User from './schema/user';
+
+import { issueUrl, voteUrl, userUrl } from './apiroutes';
 import { filter, uniqBy } from 'lodash';
 const types = [];
 const queries = [];
 const mutations = [];
-const schemas = [Doctor, Address, Horary, Language, Procedure, Carrier, medicalPlane, doctorCarrier];
+const schemas = [Issue, Vote, User];
 
 schemas.forEach(function(s) {
     types.push(s.types);
@@ -34,61 +30,60 @@ ${types.join('\n')}
   }`;
 const resolvers = {
     Query: {
-        address: (_, args) => axios.get(`${addressUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        doctor: (_, args) => axios.get(`${doctorUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        horary: (_, args) => axios.get(`${horaryUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        language: (_, args) => axios.get(`${languageUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        procedure: (_, args) => axios.get(`${procedureUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        carrier: (_, args) => axios.get(`${carrierUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        medicalPlane: (_, args) => axios.get(`${medicalPlaneUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        doctorCarrier: (_, args) => axios.get(`${doctorCarrierUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
-        getAllDoctors: () => axios.get(doctorUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllHoraries: () => axios.get(horaryUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllLanguages: () => axios.get(languageUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllProcedures: () => axios.get(procedureUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllAddress: () => axios.get(addressUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllUniqueAddress: () => axios.get(addressUrl).then(({ data }) => uniqBy(data, (d) => `${d['country']} ${d['city']}`)).catch(err => console.error(err)),
-        getAllCarrier: () => axios.get(carrierUrl).then(res => res.data).catch(err => console.error(err)),
-        getAllmedicalPlane: () => axios.get(medicalPlaneUrl).then(res => res.data).catch(err => console.error(err))
+        issue: (_, args) => axios.get(`${issueUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+        vote: (_, args) => axios.get(`${voteUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+        user: (_, args) => axios.get(`${userUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+
+        getAllIssues: () => axios.get(issueUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllVotes: () => axios.get(voteUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllUsers: () => axios.get(userUrl).then(res => res.data).catch(err => console.error(err))
     },
-    Doctor: {
-        address: (doctor) => axios.get(addressUrl).then(({ data }) => filter(data, { doctorId: doctor.id })).catch(err => console.error(err)),
-        horary: (doctor) => axios.get(horaryUrl).then(({ data }) => filter(data, { doctorId: doctor.id })).catch(err => console.error(err)),
-        language: (doctor) => axios.get(languageUrl).then(({ data }) => filter(data, { doctorId: doctor.id })).catch(err => console.error(err)),
-        procedure: (doctor) => axios.get(procedureUrl).then(({ data }) => filter(data, { doctorId: doctor.id })).catch(err => console.error(err)),
-        carrier: (doctor) => axios.get(carrierUrl).then(({ data }) => filter(data, { doctor: [{ doctorId: doctor.id }] })).catch(err => console.error(err))
+    Issue: {
+        vote: (issue) => axios.get(voteUrl).then(({ data }) => filter(data, { issueId: issue.id })).catch(err => console.error(err))
     },
-    Address: {
-        doctor: (address) => axios.get(doctorUrl).then(({ data }) => filter(data, { id: address.doctorId })).catch(err => console.error(err))
+    User: {
+        vote: (user) => axios.get(voteUrl).then(({ data }) => filter(data, { userId: user.id })).catch(err => console.error(err))
     },
-    Horary: {
-        doctor: (horary) => axios.get(horaryUrl).then(({ data }) => filter(data, { id: horary.doctorId })).catch(err => console.error(err))
-    },
-    Procedure: {
-        doctor: (procedure) => axios.get(procedureUrl).then(({ data }) => filter(data, { id: procedure.doctorId })).catch(err => console.error(err))
-    },
-    Carrier: {
-        doctor: (carrier) => axios.get(doctorUrl).then(({ data }) => filter(data, { carrier: [{ carrierId: carrier.id }] })).catch(err => console.error(err)),
-        medicalPlane: (carrier) => axios.get(medicalPlaneUrl).then(({ data }) => filter(data, { id: carrier.medicalPlaneId })).catch(err => console.error(err))
-    },
-    medicalPlane: {
-        doctor: (medicalPlane) => axios.get(medicalPlaneUrl).then(({ data }) => filter(data, { id: medicalPlane.doctorId })).catch(err => console.error(err)),
-        carrier: (medicalPlane) => axios.get(medicalPlaneUrl).then(({ data }) => filter(data, { id: medicalPlane.id })).catch(err => console.error(err))
+    Vote: {
+        user: (vote) => axios.get(userUrl).then(({ data }) => filter(data, { id: vote.userId })).catch(err => console.error(err)),
+        issue: (vote) => axios.get(issueUrl).then(({ data }) => filter(data, { id: vote.issueId })).catch(err => console.error(err))
     },
     Mutation: {
-        createDoctor(_, {
+        addIssue(_, {
             id,
-            firstName,
-            lastName,
-            age,
-            title
+            name,
+            description
         }) {
-            return axios.post(doctorUrl, {
+            return axios.post(issueUrl, {
                 id,
-                firstName,
-                lastName,
-                age,
-                title
+                name,
+                description
+            }).then(res => res.data);
+        },
+        addVote(_, {
+            id,
+            date,
+            user
+        }) {
+            return axios.post(voteUrl, {
+                id,
+                date,
+                user
+            }).then(res => res.data);
+        },
+        addUser(_, {
+            id,
+            name,
+            email,
+            username,
+            image
+        }) {
+            return axios.post(userUrl, {
+                id,
+                name,
+                email,
+                username,
+                image
             }).then(res => res.data);
         }
     }
