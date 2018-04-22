@@ -11,40 +11,41 @@ import * as Resource from './schema/resource';
 import * as Geometry from './schema/geometry';
 import * as Location from './schema/location';
 import * as disasterKit from './schema/disasterKit';
+import * as translation from './schema/translation';
+import * as huracanWarning from './schema/huracanWarning';
+import * as textTanslate from './schema/textTranslate';
+import * as Image from './schema/image';
+import * as Style from './schema/style';
+import * as translationFrom from './schema/translationFrom';
+import * as translationText from './schema/translationText';
+import * as translationLanguage from './schema/translationLanguage';
+import * as contact from './schema/contact';
+import * as phoneWebsite from './schema/phoneWebsite';
+
+
 
 import * as emissionsReduction from './schema/emissionsReduction';
-import { issueUrl, voteUrl, userUrl, resourceUrl, emissionsReductionUrl, disasterKitUrl } from './apiroutes';
+import { issueUrl, voteUrl, userUrl, resourceUrl, emissionsReductionUrl, disasterKitUrl, huracaneWarningUrl, contactUrl, phoneWebsiteUrl } from './apiroutes';
 import { filter } from 'lodash';
 import googleMaps from '@google/maps';
-// import translate from "google-translate-api";
+import translate from "google-translate-api";
 
 const googleMapsClient = googleMaps.createClient({
-    key: 'AIzaSyCzKZZwaTQgfPXm5ZQa7V6ht0dHXz3wKi8',
+    key: 'AIzaSyD-uCrCXmA0JtrEJFKYwlKd5Pj-5AECP3U',
     Promise: Promise
 });
-// translate('I spea Dutch!', { from: 'en', to: 'nl' }).then(res => {
-//     console.log(res.text);
-//     //=> Ik spreek Nederlands! 
-//     console.log(res.from.text.autoCorrected);
-//     //=> true 
-//     console.log(res.from.text.value);
-//     //=> I [speak] Dutch! 
-//     console.log(res.from.text.didYouMean);
-//     //=> false 
-// }).catch(err => {
-//     console.error(err);
-// });
 
 const types = [];
 const queries = [];
 const mutations = [];
-const schemas = [Issue, Vote, User, Resource, emissionsReduction, Geometry, Location, disasterKit];
+const schemas = [Issue, Vote, User, Resource, emissionsReduction, Geometry, Location, disasterKit, huracanWarning, textTanslate, Image, Style, translation, translationFrom, translationLanguage, translationText, contact, phoneWebsite];
 
 schemas.forEach(function(s) {
     types.push(s.types);
     queries.push(s.queries);
     mutations.push(s.mutations);
 });
+
 const typeDefs = `  
 ${types.join('\n')}      
   type Query {
@@ -56,16 +57,22 @@ ${types.join('\n')}
 const resolvers = {
     Query: {
         issue: (_, args) => axios.get(`${issueUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+        contact: (_, args) => axios.get(`${contactUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         vote: (_, args) => axios.get(`${voteUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         user: (_, args) => axios.get(`${userUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+        phoneWebsite: (_, args) => axios.get(`${phoneWebsiteUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         resource: (_, args) => axios.get(`${resourceUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
+        huracaneWarning: (_, args) => axios.get(`${huracaneWarningUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         emissionsReduction: (_, args) => axios.get(`${emissionsReductionUrl}/${args.id}`).then(res => res.data).catch(err => console.error(err)),
         getAllIssues: () => axios.get(issueUrl).then(res => res.data).catch(err => console.error(err)),
         getAllVotes: () => axios.get(voteUrl).then(res => res.data).catch(err => console.error(err)),
         getAllUsers: () => axios.get(userUrl).then(res => res.data).catch(err => console.error(err)),
         getAllDisasterKit: () => axios.get(disasterKitUrl).then(res => res.data).catch(err => console.error(err)),
         getAllResource: () => axios.get(resourceUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllHuracaneWarning: () => axios.get(huracaneWarningUrl).then(res => res.data).catch(err => console.error(err)),
         getAllemissionsReduction: () => axios.get(emissionsReductionUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllContact: () => axios.get(contactUrl).then(res => res.data).catch(err => console.error(err)),
+        getAllPhoneWebsite: () => axios.get(phoneWebsiteUrl).then(res => res.data).catch(err => console.error(err)),
         getResourcesFromGoogle: (_, args) => {
             let result = [];
             let locationp = [args.lat, args.lng];
@@ -98,12 +105,12 @@ const resolvers = {
                                     }
                                 case "hospital":
                                     {
-                                        item.faIcon = "fa-hospital-symbol";
+                                        item.faIcon = "fa-h-square";
                                         break;
                                     }
                                 case "store":
                                     {
-                                        item.faIcon = "fa-shopping-cart";
+                                        item.faIcon = "fa-shopping-basket ";
                                         break;
                                     }
                                 case "gas_station":
@@ -131,6 +138,23 @@ const resolvers = {
                     res = res.concat(item);
                 });
                 return res;
+            });
+        },
+        getTranslation: (_, args) => {
+            return translate(args.textIn, { from: args.from, to: args.to }).then(res => res
+                // {
+                //     return res.text;
+                // console.log(res);
+                //=> Ik spreek Nederlands! 
+                //console.log(res.from.text.autoCorrected);
+                //=> true 
+                //console.log(res.from.text.value);
+                //=> I [speak] Dutch! 
+                //console.log(res.from.text.didYouMean);
+                //=> false 
+                // }
+            ).catch(err => {
+                console.error(err);
             });
         }
     },

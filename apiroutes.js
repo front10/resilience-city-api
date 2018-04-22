@@ -5,3 +5,7 @@ export const userUrl = `${baseUrl}user`;
 export const resourceUrl = `${baseUrl}resource`;
 export const emissionsReductionUrl = `${baseUrl}emissionsReduction`;
 export const disasterKitUrl = `${baseUrl}disasterKit`;
+export const huracaneWarningUrl = `${baseUrl}huracaneWarning`;
+export const textTranslateUrl = `${baseUrl}textTranslate`;
+export const contactUrl = `${baseUrl}contact`;
+export const phoneWebsiteUrl = `${baseUrl}phoneWebsite`;

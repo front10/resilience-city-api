@@ -2,7 +2,7 @@ export const types = `
 "disasterKit entitie"
     type disasterKit {        
         id: String!
-        name: String!         
+        name: [textTranslate]      
     }
 `;
 

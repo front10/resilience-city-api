@@ -1,0 +1,134 @@
+{
+    "aa": [{
+            "id": 1,
+            "name": [{
+                "code": "en",
+                "value": "At least one gallon of water per person for 3 to 7 days"
+            }, {
+                "code": "es",
+                "value": "Al menos un galón de agua por persona durante 3 a 7 días"
+            }, {
+                "code": "ke",
+                "value": "Omwen yon galon dlo pou chak moun pou 3 a 7 jou"
+            }]
+        },
+        {
+            "id": 2,
+            "name": [{
+                "code": "en",
+                "value": "Non-perishable snacks and packaged or canned food for at least 3 to 7 days"
+            }, {
+                "code": "es",
+                "value": "Aperitivos no perecederos y alimentos envasados o enlatados durante al menos 3 a 7 días"
+            }, {
+                "code": "ke",
+                "value": "Ti goute ki pa gate ak pake oswa manje nan bwat pou omwen 3 a 7 jou"
+            }]
+        },
+        {
+            "id": 3,
+            "name": [{
+                "code": "en",
+                "value": "Non-electric can opener"
+            }, {
+                "code": "es",
+                "value": "Abrelatas no eléctrico"
+            }, {
+                "code": "ke",
+                "value": "Ki pa elektrik ka bwat"
+            }]
+        },
+        {
+            "id": 4,
+            "name": [{
+                "code": "en",
+                "value": "Change of clothing, rain gear and sturdy shoes"
+            }, {
+                "code": "es",
+                "value": "Cambio de ropa, ropa de lluvia y calzado resistente"
+            }, {
+                "code": "ke",
+                "value": "Chanjman nan rad, kovèti pou lapli ak soulye ki solid"
+            }]
+        },
+        {
+            "id": 5,
+            "name": [{
+                "code": "en",
+                "value": "Bedding"
+            }, {
+                "code": "es",
+                "value": "Ropa de cama"
+            }, {
+                "code": "ke",
+                "value": "Kabann"
+            }]
+        },
+        {
+            "id": 6,
+            "name": [{
+                "code": "en",
+                "value": "Prescription medication"
+            }, {
+                "code": "es",
+                "value": "Prescripción médica"
+            }, {
+                "code": "ke",
+                "value": "Preskripsyon medikaman"
+            }]
+        },
+        {
+            "id": 7,
+            "name": [{
+                "code": "en",
+                "value": "Personal hygiene items"
+            }, {
+                "code": "es",
+                "value": "Artículos de higiene personal"
+            }, {
+                "code": "ke",
+                "value": "Atik ijyèn pèsonèl"
+            }]
+        },
+        {
+            "id": 8,
+            "name": [{
+                "code": "en",
+                "value": "Special items and food for infants, elderly or disabled family members"
+            }, {
+                "code": "es",
+                "value": "Artículos especiales y comida para bebés, ancianos o miembros discapacitados de la familia"
+            }, {
+                "code": "ke",
+                "value": "Atik espesyal ak manje pou ti bebe, manm granmoun aje oswa enfim fanmi"
+            }]
+        },
+        {
+            "id": 9,
+            "name": [{
+                "code": "en",
+                "value": "First-aid kit"
+            }, {
+                "code": "es",
+                "value": "Botiquín de primeros auxilios"
+            }, {
+                "code": "ke",
+                "value": "Kit premye sekou"
+            }]
+        },
+        {
+            "id": 10,
+            "name": [{
+                "code": "en",
+                "value": "Fully charged mobile phone with charger"
+            }, {
+                "code": "es",
+                "value": "Teléfono móvil completamente cargado con cargador"
+            }, {
+                "code": "ke",
+                "value": "Fully chaje telefòn mobil ak plato"
+            }]
+
+        }
+    ]
+}

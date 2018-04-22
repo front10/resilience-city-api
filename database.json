@@ -212,24 +212,578 @@
         { "id": 99, "name": "Schroeder-O'Connell", "votes": [{ "voteId": 1 }, { "voteId": 2 }, { "voteId": 3 }, { "voteId": 4 }, { "voteId": 5 }, { "voteId": 6 }, { "voteId": 7 }, { "voteId": 8 }, { "voteId": 9 }, { "voteId": 10 }, { "voteId": 11 }], "description": "Malignant neoplasm of overlapping sites of stomach" },
         { "id": 100, "name": "Sporer-Streich", "votes": [{ "voteId": 1 }, { "voteId": 2 }, { "voteId": 3 }, { "voteId": 4 }, { "voteId": 5 }, { "voteId": 6 }], "description": "Pathological fracture, unspecified finger(s), subsequent encounter for fracture with delayed healing" }
     ],
-    "emissionsReduction": [{ "id": 1, "name": "Brakus Inc", "value": 1 },
-        { "id": 2, "name": "Jones LLC", "value": 2 },
-        { "id": 3, "name": "Frami-Cartwright", "value": 13 },
-        { "id": 4, "name": "Raynor-Kihn", "value": 1 },
-        { "id": 5, "name": "Leuschke-Durgan", "value": 79 },
-        { "id": 6, "name": "O'Conner LLC", "value": 6 }
+    "emissionsReduction": [{ "id": 1, "name": "CAFE Standards", "value": 11 },
+        { "id": 2, "name": "Water & Energy Efficiency", "value": 2 },
+        { "id": 3, "name": "Our Envarioment", "value": 1 },
+        { "id": 4, "name": "Vibrant Economy", "value": 1 },
+        { "id": 5, "name": "Responsible Land Use & Smart Transportation", "value": 6 },
+        { "id": 6, "name": "Expected future reductions", "value": 79 }
     ],
-    "disasterKit": [
-        { "id": 1, "name": "At least one gallon of water per person for 3 to 7 days" },
-        { "id": 2, "name": "Non-perishable snacks and packaged or canned food for at least 3 to 7 days" },
-        { "id": 3, "name": "Non-electric can opener" },
-        { "id": 4, "name": "Change of clothing, rain gear and sturdy shoes" },
-        { "id": 5, "name": "Bedding" },
-        { "id": 6, "name": "prescription medication" },
-        { "id": 7, "name": "Personal hygiene items" },
-        { "id": 8, "name": "Special items and food for infants, elderly or disabled family members" },
-        { "id": 9, "name": "First-aid kit" },
-        { "id": 10, "name": "Fully charged mobile phone with charger" },
-        { "id": 11, "name": "Extra pair of glasses" }
+    "disasterKit": [{
+            "id": 1,
+            "name": [{
+                "code": "en",
+                "value": "At least one gallon of water per person for 3 to 7 days"
+            }, {
+                "code": "es",
+                "value": "Al menos un galón de agua por persona durante 3 a 7 días"
+            }, {
+                "code": "ke",
+                "value": "Omwen yon galon dlo pou chak moun pou 3 a 7 jou"
+            }]
+        },
+        {
+            "id": 2,
+            "name": [{
+                "code": "en",
+                "value": "Non-perishable snacks and packaged or canned food for at least 3 to 7 days"
+            }, {
+                "code": "es",
+                "value": "Aperitivos no perecederos y alimentos envasados o enlatados durante al menos 3 a 7 días"
+            }, {
+                "code": "ke",
+                "value": "Ti goute ki pa gate ak pake oswa manje nan bwat pou omwen 3 a 7 jou"
+            }]
+        },
+        {
+            "id": 3,
+            "name": [{
+                "code": "en",
+                "value": "Non-electric can opener"
+            }, {
+                "code": "es",
+                "value": "Abrelatas no eléctrico"
+            }, {
+                "code": "ke",
+                "value": "Ki pa elektrik ka bwat"
+            }]
+        },
+        {
+            "id": 4,
+            "name": [{
+                "code": "en",
+                "value": "Change of clothing, rain gear and sturdy shoes"
+            }, {
+                "code": "es",
+                "value": "Cambio de ropa, ropa de lluvia y calzado resistente"
+            }, {
+                "code": "ke",
+                "value": "Chanjman nan rad, kovèti pou lapli ak soulye ki solid"
+            }]
+        },
+        {
+            "id": 5,
+            "name": [{
+                "code": "en",
+                "value": "Bedding"
+            }, {
+                "code": "es",
+                "value": "Ropa de cama"
+            }, {
+                "code": "ke",
+                "value": "Kabann"
+            }]
+        },
+        {
+            "id": 6,
+            "name": [{
+                "code": "en",
+                "value": "Prescription medication"
+            }, {
+                "code": "es",
+                "value": "Prescripción médica"
+            }, {
+                "code": "ke",
+                "value": "Preskripsyon medikaman"
+            }]
+        },
+        {
+            "id": 7,
+            "name": [{
+                "code": "en",
+                "value": "Personal hygiene items"
+            }, {
+                "code": "es",
+                "value": "Artículos de higiene personal"
+            }, {
+                "code": "ke",
+                "value": "Atik ijyèn pèsonèl"
+            }]
+        },
+        {
+            "id": 8,
+            "name": [{
+                "code": "en",
+                "value": "Special items and food for infants, elderly or disabled family members"
+            }, {
+                "code": "es",
+                "value": "Artículos especiales y comida para bebés, ancianos o miembros discapacitados de la familia"
+            }, {
+                "code": "ke",
+                "value": "Atik espesyal ak manje pou ti bebe, manm granmoun aje oswa enfim fanmi"
+            }]
+        },
+        {
+            "id": 9,
+            "name": [{
+                "code": "en",
+                "value": "First-aid kit"
+            }, {
+                "code": "es",
+                "value": "Botiquín de primeros auxilios"
+            }, {
+                "code": "ke",
+                "value": "Kit premye sekou"
+            }]
+        },
+        {
+            "id": 10,
+            "name": [{
+                "code": "en",
+                "value": "Fully charged mobile phone with charger"
+            }, {
+                "code": "es",
+                "value": "Teléfono móvil completamente cargado con cargador"
+            }, {
+                "code": "ke",
+                "value": "Fully chaje telefòn mobil ak plato"
+            }]
+
+        }
+    ],
+    "huracaneWarning": [{
+            "id": 1,
+            "type": "tropicalStormWatch",
+            "title": [{
+                "code": "en",
+                "value": "Tropical Storm Watch"
+            }, {
+                "code": "es",
+                "value": "Visor de tormenta tropical"
+            }, {
+                "code": "ke",
+                "value": "Tanpèt Twopikal Watch"
+            }],
+            "bodyText": [{
+                "code": "en",
+                "value": "Tropical storm conditions are possible, usually within 48 hours"
+            }, {
+                "code": "es",
+                "value": "Las condiciones de tormenta tropical son posibles, generalmente dentro de las 48 horas"
+            }, {
+                "code": "ke",
+                "value": "Kondisyon tanpèt twopikal yo posib, anjeneral nan 48 èdtan"
+            }],
+            "style": {
+                "background": "Maroon",
+                "color": "olive"
+            },
+            "bodyImage": [{
+                "id": "1",
+                "src": "https://www.nasa.gov/sites/default/files/thumbnails/image/matthew_imerg_28sep-10oct2016_0.jpg"
+            }]
+        }, {
+            "id": 2,
+            "type": "tropicalStormWarning",
+            "title": [{
+                "code": "en",
+                "value": "Tropical Storm Warning"
+            }, {
+                "code": "es",
+                "value": "Advertencia de tormenta tropical"
+            }, {
+                "code": "ke",
+                "value": "Avètisman Tanpèt Twopikal"
+            }],
+            "bodyText": [{
+                "code": "en",
+                "value": "Tropical storm conditions are expected, usually within 36 hours."
+            }, {
+                "code": "es",
+                "value": "Se esperan condiciones de tormenta tropical, generalmente dentro de las 36 horas"
+            }, {
+                "code": "ke",
+                "value": "Kondisyon tanpèt twopikal yo atann, anjeneral nan lespas 36 èdtan"
+            }],
+            "style": {
+                "background": "Maroon",
+                "color": "yellow"
+            },
+            "bodyImage": [{
+                "id": "1",
+                "src": "https://ep02.epimg.net/elpais/imagenes/2017/09/07/videos/1504772659_975389_1504777648_sumario_fotograma.jpg"
+            }]
+        },
+        {
+            "id": 3,
+            "type": "huracanWatch",
+            "title": [{
+                "code": "en",
+                "value": "Hurricane Watch"
+            }, {
+                "code": "es",
+                "value": "Visor de huracán"
+            }, {
+                "code": "ke",
+                "value": "Siklòn Watch"
+            }],
+            "bodyText": [{
+                "code": "en",
+                "value": "Hurricane conditions are possible, usually within 48 hours."
+            }, {
+                "code": "es",
+                "value": "Las condiciones de huracán son posibles, generalmente dentro de las 48 horas."
+            }, {
+                "code": "ke",
+                "value": "Kondisyon siklòn yo posib, anjeneral nan 48 èdtan."
+            }],
+            "style": {
+                "background": "Maroon",
+                "color": "orange"
+            },
+            "bodyImage": [{
+                "id": "1",
+                "src": "https://ep02.epimg.net/elpais/imagenes/2017/09/07/videos/1504772659_975389_1504782006_sumario_fotograma.jpg"
+            }]
+        },
+        {
+            "id": 4,
+            "type": "huracanWarning",
+            "title": [{
+                "code": "en",
+                "value": "Hurricane Warning"
+            }, {
+                "code": "es",
+                "value": "Advertencia de huracán"
+            }, {
+                "code": "ke",
+                "value": "Avètisman siklòn lan"
+            }],
+            "bodyText": [{
+                "code": "en",
+                "value": "Hurricane conditions are expected, usually within 36 hours."
+            }, {
+                "code": "es",
+                "value": "Se esperan condiciones de huracán, generalmente dentro de las 36 horas."
+            }, {
+                "code": "ke",
+                "value": "Kondisyon siklòn yo prevwa, anjeneral nan lespas 36 èdtan."
+            }],
+            "style": {
+                "background": "red",
+                "color": "red"
+            },
+            "bodyImage": [{
+                "id": "1",
+                "src": "https://ep02.epimg.net/elpais/imagenes/2017/09/07/videos/1504772659_975389_1504773537_sumario_fotograma.jpg"
+            }]
+        }
+    ],
+    "contact": [{
+            "id": 1,
+            "icon": "phone",
+            "value": [{
+                "code": "en",
+                "value": "Call 911 or 305-468-5900 (TTY:711)"
+            }, {
+                "code": "es",
+                "value": "Llama al 911 o 305-468-5900 (TTY:711)"
+            }, {
+                "code": "ke",
+                "value": "Rele 911 oswa 305-468-5900 (TTY: 711)"
+            }]
+        },
+        {
+            "id": 2,
+            "icon": "computer",
+            "value": [{
+                "code": "en",
+                "value": "Submit a service request at www.miamidade.gov/311direct"
+            }, {
+                "code": "es",
+                "value": "Realiza una solicitud de servicio en www.miamidade.gov/311direct"
+            }, {
+                "code": "ke",
+                "value": "Soumèt yon demann sèvis nan www.miamidade.gov/311direct"
+            }]
+        },
+        {
+            "id": 3,
+            "icon": "mail",
+            "value": [{
+                "code": "en",
+                "value": "Email 311@miamidade.gov"
+            }, {
+                "code": "es",
+                "value": "Email 311@miamidade.gov"
+            }, {
+                "code": "ke",
+                "value": "Imèl 311@miamidade.gov"
+            }]
+        },
+        {
+            "id": 4,
+            "icon": "twitter",
+            "value": [{
+                "code": "en",
+                "value": "@miamidade311"
+            }, {
+                "code": "es",
+                "value": "@miamidade311"
+            }, {
+                "code": "ke",
+                "value": "@miamidade311"
+            }]
+        },
+        {
+            "id": 5,
+            "icon": "mobile",
+            "value": [{
+                "code": "en",
+                "value": "311Direct App"
+            }, {
+                "code": "es",
+                "value": "311Direct Aplicación"
+            }, {
+                "code": "ke",
+                "value": "311Direct App"
+            }]
+        }
+    ],
+    "phoneWebsite": [{
+            "id": 1,
+            "name": [{
+                "code": "en",
+                "value": "Emergency"
+            }, {
+                "code": "es",
+                "value": "Emergencia"
+            }, {
+                "code": "ke",
+                "value": "Ijans"
+            }],
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }],
+            "tty": "",
+            "phone": "911",
+            "url": ""
+        },
+        {
+            "id": 2,
+            "name": [{
+                "code": "en",
+                "value": "Miami-Dade County"
+            }, {
+                "code": "es",
+                "value": "Condado de Miami-Dade"
+            }, {
+                "code": "ke",
+                "value": "Konte Miami-Dade"
+            }],
+            "value": [{
+                "code": "en",
+                "value": "All important service updates are posted during Emergency Operations Center activation at"
+            }, {
+                "code": "es",
+                "value": "Todas las actualizaciones importantes del servicio se publican durante la activación del Centro de operaciones de emergencia en"
+            }, {
+                "code": "ke",
+                "value": "Tout dènye sèvis enpòtan yo afiche pandan Aktivasyon Ijans Sant Operasyon nan"
+            }],
+            "phone": "305-468-5900",
+            "tty": "711",
+            "url": "www.miamidade.gov"
+        },
+        {
+            "id": 3,
+            "name": [{
+                "code": "en",
+                "value": "Miami-Dade County Office of Emergency Management"
+            }, {
+                "code": "es",
+                "value": "Oficina de Manejo de Emergencias del Condado de Miami-Dade"
+            }, {
+                "code": "ke",
+                "value": "Biwo Jesyon Ijans nan Konte Miami-Dade"
+            }],
+            "url": "www.miamidade.gov/oem",
+            "phone": "",
+            "tty": "",
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }]
+        },
+        {
+            "id": 4,
+            "name": [{
+                "code": "en",
+                "value": "National Hurricane Center"
+            }, {
+                "code": "es",
+                "value": "Centro Nacional de Huracanes"
+            }, {
+                "code": "ke",
+                "value": "Nasyonal Siklòn Sant lan"
+            }],
+            "url": "www.nhc.noaa.gov",
+            "phone": "",
+            "tty": "",
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }]
+        },
+        {
+            "id": 5,
+            "name": [{
+                "code": "en",
+                "value": "Family Social Services"
+            }, {
+                "code": "es",
+                "value": "Servicios sociales familiares"
+            }, {
+                "code": "ke",
+                "value": "Fanmi Sèvis Sosyal"
+            }],
+            "phone": "305-644-9449",
+            "url": "",
+            "tty": "",
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }]
+        },
+        {
+            "id": 5,
+            "name": [{
+                "code": "en",
+                "value": "Federal Emergency Management Agency (FEMA)"
+            }, {
+                "code": "es",
+                "value": "Agencia Federal para el Manejo de Emergencias (FEMA)"
+            }, {
+                "code": "ke",
+                "value": "Ajans Federal Jesyon Ijans (FEMA)"
+            }],
+            "phone": "1-800-621-FEMA (3362)",
+            "tty": "800-462-7585",
+            "url": "www.fema.gov",
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }]
+        },
+        {
+            "id": 6,
+            "name": [{
+                "code": "en",
+                "value": "American Red Cross"
+            }, {
+                "code": "es",
+                "value": "Cruz Roja Americana"
+            }, {
+                "code": "ke",
+                "value": "Ameriken Lakwa Wouj"
+            }],
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }],
+            "phone": "305-644-1200",
+            "tty": "",
+            "url": "www.redcross.org/local/florida/south-florida"
+        },
+        {
+            "id": 7,
+            "name": [{
+                "code": "en",
+                "value": "Poison Control Help Line"
+            }, {
+                "code": "es",
+                "value": "Línea de ayuda de control de venenos"
+            }, {
+                "code": "ke",
+                "value": "Liy Kontwòl Pwazon Liy"
+            }],
+            "phone": "1-800-222-1222",
+            "tty": "",
+            "url": "",
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }]
+        },
+        {
+            "id": 8,
+            "name": [{
+                "code": "en",
+                "value": "Miami-Dade County Public Schools"
+            }, {
+                "code": "es",
+                "value": "Escuelas Públicas del Condado de Miami-Dade"
+            }, {
+                "code": "ke",
+                "value": "Lekòl Leta Miami-Dade County"
+            }],
+            "value": [{
+                "code": "en",
+                "value": ""
+            }, {
+                "code": "es",
+                "value": ""
+            }, {
+                "code": "ke",
+                "value": ""
+            }],
+            "phone": "305-995-1000",
+            "url": "www.dadeschools.net",
+            "tty": ""
+        }
     ]
+
 }
